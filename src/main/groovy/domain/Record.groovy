@@ -15,4 +15,9 @@ class Record {
         this.siret = siret
         this.city = city
     }
+
+    @Override
+    String toString() {
+        "Record [names: $names, addresses: $addresses, siret: $siret, city: $city]"
+    }
 }

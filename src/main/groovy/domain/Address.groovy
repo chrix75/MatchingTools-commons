@@ -1,5 +1,7 @@
 package domain
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.util.regex.Pattern
 
 /**
@@ -8,6 +10,8 @@ import java.util.regex.Pattern
  * Created by csperandio on 24/08/2016.
  */
 class Address {
+    private static Logger logger = LoggerFactory.getLogger(Address.class)
+
     final int number
     final String way
     final String name
@@ -45,6 +49,8 @@ class Address {
 
     Address(String number, String way, String name, String postBoxNumber = "", String roadNumber = "") {
 
+        logger.debug("Input address: number=$number way=$way name=$name postBoxNumber=$postBoxNumber roadNumber=$roadNumber")
+
         if (number.empty) { number = "0" }
         if (postBoxNumber.empty) { postBoxNumber = "0" }
         if (roadNumber.empty) { roadNumber = "0" }
@@ -74,6 +80,8 @@ class Address {
         this.roadNumber = Integer.parseInt(roadNumber)
 
         this.mainAddress = mainWays.contains(this.way)
+
+        logger.debug("$this")
     }
 
     int catchAgainNumber(String s) {
@@ -95,7 +103,13 @@ class Address {
 
     String translate(String s) {
         def trimed = s.trim()
-        if (wayTranslator.containsKey(trimed)) { wayTranslator[trimed] }
+
+        if (wayTranslator.containsKey(trimed)) {
+            def translated = wayTranslator[trimed]
+            logger.debug("Translate the way $trimed to $translated")
+            translated
+        }
+
         else { trimed }
     }
 
@@ -111,7 +125,11 @@ class Address {
             if (!c.isDigit()) { break }
         }
 
-        if (i > 0 && i < 5) { Integer.parseInt(trimed[0..i - 1]) }
+        if (i > 0 && i < 5) {
+            def foundNumber = Integer.parseInt(trimed[0..i - 1])
+            logger.debug("extractNumber : Candidate: $candidate Number: $foundNumber")
+            foundNumber
+        }
         else { 0 }
     }
 }

@@ -1,10 +1,14 @@
 package domain
 
+import org.junit.Test
+import static org.junit.Assert.*
+
 /**
  * Created by Christian Sperandio on 27/08/2016.
  */
-class AddressTest extends GroovyTestCase {
+class AddressTest {
 
+    @Test
     void testTranlation() {
         def addr = new Address("12", "ZONE INDUSTRIELLE", "FOO DE BAR", "123", "45")
 
@@ -16,6 +20,7 @@ class AddressTest extends GroovyTestCase {
         assertFalse(addr.mainAddress)
     }
 
+    @Test
     void testMainFlag() {
         def addr = new Address("", "RUE", "DE FOO DE BAR", "", "")
 

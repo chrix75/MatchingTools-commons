@@ -1,0 +1,10 @@
+logging:
+  path: /Users/batman
+  file: BookWorm.log
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: DEBUG
+
+

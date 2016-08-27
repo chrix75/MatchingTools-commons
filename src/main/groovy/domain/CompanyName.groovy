@@ -1,17 +1,26 @@
 package domain
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 /**
  * Created by csperandio on 25/08/2016.
  */
 class CompanyName {
+    private static Logger logger = LoggerFactory.getLogger(CompanyName.class)
+
     final Boolean isService
     final List<String> wordsName
 
     CompanyName(String field) {
+        logger.debug("Input: field=$field")
+
         def words = buildWords(field.tokenize(" "))
 
         this.isService = isService(words)
         this.wordsName = words
+
+        logger.debug("$this")
     }
 
     Boolean isService(List words) {
@@ -42,4 +51,8 @@ class CompanyName {
         corrected
     }
 
+    @Override
+    String toString() {
+        "Company [words: ${this.wordsName}, isService: ${this.isService}]"
+    }
 }
