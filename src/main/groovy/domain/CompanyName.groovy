@@ -12,6 +12,11 @@ class CompanyName {
     final Boolean isService
     final List<String> wordsName
 
+    CompanyName(boolean isService, List<String> words) {
+        this.isService = isService
+        this.wordsName = new ArrayList<>(words)
+    }
+
     CompanyName(String field) {
         logger.debug("Input: field=$field")
 
@@ -34,7 +39,7 @@ class CompanyName {
         words.each { w ->
             if (w.size() > 1) {
                 if (current) {
-                    corrected << current.join()
+                    corrected << current.join('')
                     current.clear()
                 }
 
@@ -45,7 +50,7 @@ class CompanyName {
         }
 
         if (current) {
-            corrected << current.join()
+            corrected << current.join('')
         }
 
         corrected
