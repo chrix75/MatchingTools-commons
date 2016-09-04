@@ -8,16 +8,18 @@ class Record {
     final List<Address> addresses
     final String siret
     final String city
+    final long recorId
 
-    Record(List<CompanyName> names, List<Address> addresses, String siret, String city) {
+    Record(long recordId, List<CompanyName> names, List<Address> addresses, String siret, String city) {
         this.names = new ArrayList<>(names)
         this.addresses = new ArrayList<>(addresses)
         this.siret = siret
         this.city = city
+        this.recorId = recordId
     }
 
     @Override
     String toString() {
-        "Record [names: $names, addresses: $addresses, siret: $siret, city: $city]"
+        "Record [recordID: $recorId, names: $names, addresses: $addresses, siret: $siret, city: $city]"
     }
 }
