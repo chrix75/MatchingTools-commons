@@ -47,6 +47,8 @@ class Address {
 
     private Pattern numberAtBeginning = ~/^(\d+)/
 
+    Address() { println "Address Constructor" }
+
     Address(String number, String way, String name, String postBoxNumber = "", String roadNumber = "") {
 
         logger.debug("Input address: number=$number way=$way name=$name postBoxNumber=$postBoxNumber roadNumber=$roadNumber")

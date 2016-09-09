@@ -4,11 +4,13 @@ package domain
  * Created by Christian Sperandio on 27/08/2016.
  */
 class Record {
-    final List<CompanyName> names
-    final List<Address> addresses
-    final String siret
-    final String city
-    final long recorId
+    List<CompanyName> names
+    List<Address> addresses
+    String siret
+    String city
+    long recorId
+
+    Record() {}
 
     Record(long recordId, List<CompanyName> names, List<Address> addresses, String siret, String city) {
         this.names = new ArrayList<>(names)
