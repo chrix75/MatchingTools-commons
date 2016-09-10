@@ -12,12 +12,12 @@ import java.util.regex.Pattern
 class Address {
     private static Logger logger = LoggerFactory.getLogger(Address.class)
 
-    final int number
-    final String way
-    final String name
-    final int postBox
-    final int roadNumber
-    final boolean mainAddress
+    int number
+    String way
+    String name
+    int postBox
+    int roadNumber
+    boolean mainAddress
 
     private Map wayTranslator = ["ZONE INDUSTRIELLE": "ZI",
                                  "Z I"              : "ZI",

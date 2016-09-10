@@ -30,16 +30,18 @@ class ObjectsPool<T> {
         return instance
     }
 
-    def clear() {
+    def clearPool() {
         current = 0
     }
 
     static def withObjectsPool(Closure<T> builder, Closure f) {
         def pool = new ObjectsPool<T>(builder)
 
-        f(pool)
+        f.delegate = pool
 
-        pool.clear()
+        f()
+
+        pool.clearPool()
     }
 
 

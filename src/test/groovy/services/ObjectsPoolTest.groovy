@@ -48,7 +48,7 @@ class ObjectsPoolTest {
         o = pool.fetch { it.value = 'Youou' }
         println o
 
-        pool.clear()
+        pool.clearPool()
 
         o = pool.fetch { it.value = 'KIKO' }
         println o
@@ -65,14 +65,16 @@ class ObjectsPoolTest {
 
     @Test
     public void withObjectPool() {
-        ObjectsPool.withObjectsPool( { new TestObject() }) { internalPool ->
-            def o = internalPool.fetch { it.value = 'Youou' }
+        ObjectsPool.withObjectsPool( { new TestObject() }) {
+            def o = fetch { it.value = 'Youou' }
             println o
 
-            o = internalPool.fetch { it.value = 'Youou' }
+            o = fetch { it.value = 'bobo' }
             println o
 
-            o = internalPool.fetch { it.value = 'Youou' }
+            clearPool()
+
+            o = fetch { it.value = 'galou' }
             println o
         }
     }

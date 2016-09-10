@@ -46,11 +46,15 @@ class ExpressionsMatcher {
 
         def comparisons = compareWords(combinations)
 
-        def matchComparisons = comparisons.findAll { it[2] == Match.MATCH }
+        def matchWords1 = [] as Set
+        def matchWords2 = [] as Set
 
-        def matchWords1 = matchComparisons.collect{ it[0] } as Set
-        def matchWords2 = matchComparisons.collect{ it[1] } as Set
-
+        comparisons.each {
+            if (it[2] == Match.MATCH) {
+                matchWords1 << it[0]
+                matchWords2 << it[1]
+            }
+        }
 
         def score1 = matchWords1.size() / keptWords1.size() as float
         def score2 = matchWords2.size() / keptWords2.size() as float
